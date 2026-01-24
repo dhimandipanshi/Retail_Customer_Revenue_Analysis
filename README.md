@@ -93,19 +93,6 @@ Based on the findings, the following data-driven strategies are recommended:
 
 ---
 
-## 🚀 How to Use
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/dhimandipanshi/HM-customerAnalysis.git
-   ```
-2. Open the Jupyter Notebook or Python script to explore the data cleaning and EDA steps.
-3. Use the included SQL queries for in-depth data analysis.
-4. Open the Power BI file to interact with the visual dashboard.
-
----
-
 ## ✨ Author
 
 👩‍💻 **Dipanshi Dhiman**
@@ -114,5 +101,3 @@ Data Analyst | Business Intelligence Enthusiast
 📧 [dhimandipanshi713@gmail.com](mailto:dhimandipanshi713@gmail.com)
 
 ---
-
-> “Turning data into strategy — because every purchase tells a story.” 💡
