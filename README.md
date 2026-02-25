@@ -442,7 +442,7 @@ An interactive **Power BI dashboard** was built to enable stakeholder exploratio
 | Tool | Purpose |
 |------|---------|
 | **Python (Pandas, NumPy, Matplotlib, Seaborn)** | Data cleaning, EDA, feature engineering, visualization |
-| **PostgreSQL** | Structured storage, SQL analysis, aggregations |
+| **SQL** | Structured storage, SQL analysis, aggregations |
 | **Power BI** | Interactive dashboard, stakeholder reporting |
 | **Git & GitHub** | Version control and portfolio publishing |
 
