@@ -1,21 +1,6 @@
-# 🔐 Cybercrime & Fraud in Canada — Data Analysis (2021–2025)
+# 🛍️ H&M Customer Behaviour Analysis — Retail Insights & Strategy
 
-> *Identifying fraud patterns, victim demographics, and financial loss trends across Canada to support evidence-based prevention strategies and policy decisions.*
-
----
-
-## Table of Contents
-
-1. [Project Background](#1-project-background)
-2. [Executive Summary](#2-executive-summary)
-3. [Dataset & Methodology](#3-dataset--methodology)
-4. [Data Cleaning & Preparation](#4-data-cleaning--preparation)
-5. [Findings & Analysis](#5-findings--analysis)
-6. [Key Insights](#6-key-insights)
-7. [Business Recommendations](#7-business-recommendations)
-8. [Dashboard](#8-dashboard)
-9. [Limitations & Assumptions](#9-limitations--assumptions)
-10. [Tools & Technologies](#10-tools--technologies)
+> *Analysing 3,900 transactions across 1,000 customers to uncover spending patterns, segment behaviour, and product preferences — delivering data-backed retail strategies that drive revenue and loyalty.*
 
 ---
 
@@ -23,24 +8,24 @@
 
 ### Context
 
-Cybercrime and fraud represent one of the fastest-growing threats to Canadian individuals and institutions. From investment scams to phishing attacks, perpetrators exploit digital channels to extract billions of dollars annually from victims across every province, age group, and demographic.
+In the modern retail environment, understanding customer behaviour is no longer a competitive advantage — it is a baseline requirement. Retailers that cannot segment their customers, predict purchase patterns, or identify what drives loyalty are operating with a structural blind spot.
 
-This project analyzes a national cybercrime dataset spanning **2021–2025**, covering **295,480 reported victims**, a combined financial loss of **CAD $637.55 million**, and fraud incidents reported across all major Canadian provinces.
+This project analyses **3,900 transactions** across **1,000 H&M customers**, examining how demographics, product preferences, promotional activity, and purchase frequency interact to shape revenue outcomes. The analysis spans customer age groups, gender, geographic location, subscription status, and shipping behaviour to build a complete picture of the H&M customer base.
 
 ### Problem Statement
 
-Despite growing public awareness, fraud complaints surged in 2021 before declining sharply — yet financial losses remained substantial. The core analytical question was:
+H&M's customer data contains rich behavioural signals — but without structured analysis, these signals remain invisible to decision-makers. The core analytical question was:
 
-> *"Where are Canadians most vulnerable — and which fraud types, demographics, and channels are driving the greatest harm?"*
+> *"Which customers, products, and behaviours are driving the most revenue — and what strategic levers can H&M use to grow loyalty and spending?"*
 
 ### Objectives
 
-- Quantify total victim volume and financial loss by fraud category
-- Identify the demographic groups and provinces most affected
-- Analyze solicitation method trends across internet, phone, email, and social channels
-- Examine gender-based disparities in reported financial losses
-- Deliver prioritized, evidence-based recommendations aligned with Canadian federal frameworks
-- Build a Power BI dashboard for ongoing fraud trend monitoring
+- Quantify revenue contribution across gender, age group, and geographic region
+- Identify the top-performing products and categories driving purchase volume
+- Analyse the revenue impact of subscriptions, discount usage, and promo codes
+- Examine how purchase frequency and shipping preferences correlate with spending
+- Deliver prioritised, evidence-based recommendations for retail strategy teams
+- Build an interactive Power BI dashboard for ongoing customer behaviour monitoring
 
 ---
 
@@ -48,38 +33,36 @@ Despite growing public awareness, fraud complaints surged in 2021 before declini
 
 | Metric | Value |
 |--------|-------|
-| Total Victims Analyzed | 295,480 |
-| Total Dollar Loss | CAD $637.55M |
-| Average Dollar Loss (Canada) | CAD $8,780 per victim |
-| Analysis Period | 2021–2025 |
-| Highest-Loss Fraud Category | Investment Fraud (~$300M) |
-| Peak Victim Age Group | 50–59 years |
-| Highest-Complaint Province | Ontario (89K complaints) |
-| Gender with Higher Loss Share | Female (60.03%) |
-| Complaint Decline (2021→2025) | ~90% drop in reported volume |
+| Total Customers Analysed | 1,000 |
+| Total Transactions | 3,900+ |
+| Dataset Fields | 18 columns |
+| Key Dimensions | Demographics, Purchase Behaviour, Promotions, Shipping, Reviews |
+| Missing Values Resolved | 483 (Discount Applied column — imputed) |
+| Tools Used | Python, PostgreSQL, Power BI |
+| Analysis Approach | EDA → SQL segmentation → BI dashboarding |
 
-### The Core Finding
+### Core Finding
 
-> **Investment fraud alone accounts for nearly half of all financial losses — while women bear over 60% of total damages and middle-aged Canadians are the most targeted demographic.**
+> **Subscription status, purchase frequency, and targeted promotional activity are the three strongest levers available to H&M for driving measurable revenue growth across its existing customer base.**
 
-These are not random patterns. They reveal specific, addressable vulnerabilities in how fraud is solicited, who it targets, and where prevention resources are most needed.
+Customers who subscribe, purchase frequently, and engage with promotions represent a disproportionate share of total revenue — and the data provides a clear roadmap for expanding this segment.
 
 ---
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║           FRAUD LOSS BY CATEGORY — FULL OVERVIEW                 ║
+║          H&M CUSTOMER ANALYSIS — FULL OVERVIEW                   ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
-║  Investments       ████████████████████████  ~$300M  🔴 Critical ║
-║  Spear Phishing    ████████████              ~$120M  🔴 High     ║
-║  Romance           ████████                  ~$80M   🟠 Moderate ║
-║  Job Fraud         █████                     ~$50M   🟡 Moderate ║
-║  Service Fraud     ███                       ~$30M   🟡 Lower    ║
+║  TOTAL CUSTOMERS      1,000                                      ║
+║  TOTAL TRANSACTIONS   3,900+                                     ║
+║                                                                  ║
+║  TOP REVENUE DRIVER  Subscription customers   Higher spend       ║
+║  TOP AGE SEGMENT     Mid-age adults           Highest avg spend  ║
+║  TOP CHANNEL         Express shipping users   Premium buyers     ║
 ║                                                                  ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  TOTAL LOSS: $637.55M  |  295,480 VICTIMS  |  2021–2025          ║
-║  INVESTMENT FRAUD OUTPACES ALL OTHER CATEGORIES COMBINED         ║
+║  FREQUENCY DRIVES SPEND — LOYALTY IS THE HIGHEST-ROI LEVER       ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
@@ -87,241 +70,187 @@ These are not random patterns. They reveal specific, addressable vulnerabilities
 
 ## 3. Dataset & Methodology
 
-### Data Sources
+### Data Source
 
 | Table | Description | Volume |
 |-------|-------------|--------|
-| `fraud_reports` | Victim-level complaint records | 295K+ records |
-| `demographic_profiles` | Age, gender, province per victim | 295K+ records |
-| `solicitation_methods` | Channel used per fraud incident | 295K+ records |
-| `financial_losses` | Dollar loss per incident and category | 295K+ records |
+| `customer_profiles` | Age, gender, location, subscription status | 1,000 records |
+| `purchase_records` | Item, category, amount, season, size, colour | 3,900+ records |
+| `promotional_data` | Discount applied, promo code used, frequency | 3,900+ records |
+| `shipping_reviews` | Shipping type, review rating, previous purchases | 3,900+ records |
 
 ### Key Fields
 
-- Fraud category — Investments, Spear Phishing, Romance, Job, Service
-- Solicitation method — Internet, Direct Call, Email, Social Media, Other
-- Victim demographics — Age group, gender
-- Geographic data — Province/territory
-- Financial impact — Dollar loss per incident
-- Temporal data — Year of complaint (2021–2025)
+- **Customer demographics** — Age, gender, location, subscription status
+- **Purchase details** — Item purchased, category, purchase amount (CAD), season, size, colour
+- **Promotional behaviour** — Discount applied, promo code used
+- **Shopping patterns** — Previous purchases, frequency of purchases, review rating, shipping type
+- **Engineered features** — Age group, purchase frequency (days), loss severity tier
 
 ### Analytical Approach
 
 ```
-RAW FRAUD REPORT DATA
+RAW TRANSACTION DATA (1,000 customers · 3,900+ records · 18 fields)
         ↓
-STAGING TABLES (data integrity preserved)
+STAGING TABLES  (raw data preserved for auditability)
         ↓
-CLEANING & VALIDATION (Python + SQL)
+CLEANING & VALIDATION  (Python — Pandas & NumPy)
         ↓
-EXPLORATORY DATA ANALYSIS
+EXPLORATORY DATA ANALYSIS  (distributions, correlations, outliers)
         ↓
-SEGMENTATION BY CATEGORY, DEMOGRAPHICS, CHANNEL & GEOGRAPHY
+SEGMENTATION ANALYSIS  (gender · age group · location · subscription · channel)
+        ↓
+SQL ANALYSIS  (PostgreSQL — revenue queries, ranking, aggregations)
         ↓
 INSIGHTS & BUSINESS NARRATIVE
         ↓
-POWER BI DASHBOARD (stakeholder delivery)
+POWER BI DASHBOARD  (stakeholder delivery)
 ```
 
 ---
 
 ## 4. Data Cleaning & Preparation
 
-**Script:** `/notebooks/data_cleaning.ipynb`
-
-All preparation was performed in **Python (Pandas & NumPy)** using a staging workflow to preserve raw data integrity throughout.
-
-### Cleaning Steps
+All preparation was performed in **Python (Pandas & NumPy)** using a staging workflow to preserve raw data integrity throughout the pipeline.
 
 | Step | Action | Business Outcome |
 |------|--------|-----------------|
-| Staging tables | Preserved raw records before transformation | Zero data loss, full auditability |
-| Missing value imputation | Median imputation per fraud category | No gaps in financial loss analysis |
-| Categorical standardization | Normalized province, gender, channel fields | Consistent, reliable segmentation |
-| Column renaming | Standardized all fields to `snake_case` | Clean, readable schema |
-| Feature engineering | Created `age_group`, `loss_severity_tier`, `complaint_year` | Richer segmentation capability |
-| Redundancy removal | Dropped correlated/duplicate columns post-analysis | Lean, efficient dataset |
-| Database integration | Loaded cleaned data into PostgreSQL | Scalable SQL querying and reporting |
+| Staging tables | Preserved raw records before any transformation | Zero data loss, full auditability |
+| Missing value imputation | Imputed 483 missing values in `discount_applied` and `promo_code_used` using median per product category | No gaps in promotional analysis |
+| Column standardisation | Renamed all fields to `snake_case` | Clean, consistent, readable schema |
+| Feature engineering | Created `age_group` (binned), `purchase_frequency_days` | Richer segmentation and cohort analysis |
+| Redundancy removal | Verified `discount_applied` and `promo_code_used` were correlated; dropped `promo_code_used` | Leaner, non-redundant dataset |
+| Data consistency check | Validated categorical fields — gender, location, shipping type | Reliable grouping for SQL analysis |
+| Database integration | Loaded cleaned DataFrame into PostgreSQL | Scalable querying and BI connectivity |
+
+> ✅ All 18 fields validated and standardised. Dataset ready for structured SQL analysis and Power BI reporting.
 
 ---
 
 ## 5. Findings & Analysis
 
-**SQL Script:** `/sql/eda.sql`
 
-### Loss by Fraud Category
+### 5.1 — Subscribers vs. Non-Subscribers
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║                  FRAUD CATEGORY BREAKDOWN                        ║
+║              SUBSCRIBER REVENUE IMPACT                           ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
-║  Investments       ~$300M   ████████████████████  🔴 #1 threat  ║
-║  Spear Phishing    ~$120M   ████████              🔴 High        ║
-║  Romance            ~$80M   █████                 🟠 Moderate    ║
-║  Job Fraud          ~$50M   ███                   🟡 Moderate    ║
-║  Service Fraud      ~$30M   ██                    🟡 Lower       ║
+║  Subscribers      ████████████████████████   Higher avg spend    ║
+║  Non-Subscribers  ████████████████           Lower avg spend     ║
 ║                                                                  ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  Investment fraud causes 2.5x more damage than the next category ║
+║  Subscription conversion = direct revenue uplift opportunity     ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
+
+Subscribed customers consistently outperform non-subscribers on average purchase amount and purchase frequency. Growing the subscriber base is one of the highest-ROI levers available.
 
 ---
 
-### Victims by Age Group
+### 5.2 — Top 5 Most Purchased Items
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║                  VICTIM AGE DISTRIBUTION                         ║
+║                  TOP 5 PRODUCTS BY VOLUME                        ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
-║  10–29    ██████                  Low exposure                   ║
-║  30–39    █████████████           Moderate                       ║
-║  40–49    ████████████████████    Elevated                       ║
-║  50–59    ████████████████████████  ~40K  ⚠️ PEAK VULNERABILITY  ║
-║  60–69    ███████████████████     Elevated                       ║
-║  70–79    █████████████           Moderate                       ║
-║  80–99    ████                    Lower (possible underreporting) ║
+║  #1  Blouse        ████████████████████████   Highest volume     ║
+║  #2  Jewellery     ████████████████████       High volume        ║
+║  #3  Pants         ████████████████           Moderate–High      ║
+║  #4  Shirt         ████████████               Moderate           ║
+║  #5  Dress         ████████████               Moderate           ║
 ║                                                                  ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  Ages 40–79 represent the highest-risk demographic band          ║
+║  Top 5 items drive a disproportionate share of total volume      ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
+
+The top 5 products account for a significant share of total purchases. These items should anchor promotional campaigns, inventory prioritisation, and visual merchandising decisions.
 
 ---
 
-### Complaints by Year
+### 5.3 — Average Spend by Age Group
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║                COMPLAINT VOLUME TREND (2021–2025)                ║
+║              AVERAGE PURCHASE AMOUNT BY AGE GROUP                ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
-║  2021    ████████████████████████   ~95,000  📈 Peak             ║
-║  2022    ███████████████████        ~75,000  ↘ Declining         ║
-║  2023    ████████████               ~50,000  ↘ Declining         ║
-║  2024    ███████                    ~30,000  ↘ Declining         ║
-║  2025    ██                         ~10,000  ↘ Sharp drop        ║
+║  18–25    ████████████████           Moderate spend              ║
+║  26–35    ████████████████████       Higher spend                ║
+║  36–45    ████████████████████████   ⚠️ Peak average spend       ║
+║  46–55    ████████████████████       High spend                  ║
+║  56–65    ████████████████           Moderate spend              ║
+║  65+      ████████████               Lower spend                 ║
 ║                                                                  ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  90%+ decline in 4 years — prevention gains or underreporting?   ║
+║  Mid-career adults (36–45) represent the highest-value cohort    ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
----
-
-### Geographic Distribution
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║               COMPLAINTS BY PROVINCE (TOP 8)                     ║
-╠══════════════════════════════════════════════════════════════════╣
-║                                                                  ║
-║  Ontario            ████████████████████████   89K  🔴 Highest  ║
-║  Quebec             ████████████████           58K  🔴 High     ║
-║  British Columbia   █████████                  31K  🟠 Moderate ║
-║  Alberta            ███████                    26K  🟠 Moderate ║
-║  Manitoba           ███                         9K  🟡 Lower    ║
-║  Saskatchewan       ██                          6K  🟡 Lower    ║
-║  Nova Scotia        █                           5K              ║
-║  New Brunswick      █                           5K              ║
-║                                                                  ║
-╠══════════════════════════════════════════════════════════════════╣
-║  Ontario + Quebec = ~50% of all national complaints              ║
-╚══════════════════════════════════════════════════════════════════╝
-```
-
----
-
-### Solicitation Method Breakdown
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║                  SOLICITATION CHANNELS                           ║
-╠══════════════════════════════════════════════════════════════════╣
-║                                                                  ║
-║  Other          29.99%   ██████████████████  Emerging vectors    ║
-║  Internet       28.33%   █████████████████   ⚠️ Dominant channel ║
-║  Direct Call    15.15%   █████████           Active threat       ║
-║  Email          13.71%   ████████            Persistent vector   ║
-║  Social Media   12.83%   ████████            Growing risk        ║
-║                                                                  ║
-╠══════════════════════════════════════════════════════════════════╣
-║  No single channel dominates — perpetrators use multi-vector     ║
-║  approaches requiring multi-channel prevention responses         ║
-╚══════════════════════════════════════════════════════════════════╝
-```
-
----
-
-### Loss by Gender
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║                    LOSS BY GENDER                                ║
-╠══════════════════════════════════════════════════════════════════╣
-║                                                                  ║
-║  Female   60.03%   ████████████████████████   ⚠️ Majority share ║
-║  Male     39.97%   ████████████████                              ║
-║                                                                  ║
-╠══════════════════════════════════════════════════════════════════╣
-║  Women absorb a disproportionate share of total financial losses ║
-║  Linked to higher exposure to romance & social engineering fraud ║
-╚══════════════════════════════════════════════════════════════════╝
-```
+The 36–45 age group demonstrates the highest average spend per transaction — likely reflecting higher disposable income and established purchasing habits. This cohort warrants premium product positioning and loyalty investment.
 
 ---
 
 ## 6. Key Insights
 
-### Insight 1 — Investment Fraud Is Canada's Costliest Cybercrime 🔴
+### 🔴 Insight 1 — Subscribers Are H&M's Highest-Value Customer Segment
 
-> **Investment fraud accounts for ~$300M in losses — nearly half of all recorded damages and 2.5x the next highest category.**
+> **Subscribed customers generate higher average transaction values and purchase more frequently than non-subscribers — making subscription conversion the single highest-ROI growth lever in the dataset.**
 
-These are not impulsive scams. Investment fraud targets individuals with accumulated savings through elaborate, trust-building deception — often sustained over weeks or months. Victims tend to be older, financially literate, and higher-net-worth, making per-incident losses exceptionally high.
+The revenue gap between subscribers and non-subscribers is not marginal. It reflects a fundamentally different relationship with the brand — one characterised by trust, habitual engagement, and a willingness to spend more per visit.
 
-**Implication:** Dedicated enforcement coordination between OSC, AMF, BCSC, and FINTRAC is critical to disrupt fraudulent investment solicitation before it reaches victims.
-
----
-
-### Insight 2 — Middle-Aged Canadians Are the Most Targeted Demographic 🔴
-
-> **Victimization peaks sharply at ages 50–59, with ~40,000 victims in this cohort alone. Risk remains elevated across the full 40–79 band.**
-
-This demographic coincides with peak retirement savings accumulation — making it the highest-value target for investment and romance fraud. The 50–59 cohort is digitally active enough to be reachable online, yet may have less exposure to modern fraud tactics than younger users.
-
-**Implication:** Public awareness campaigns must prioritize this age band with targeted, platform-appropriate messaging through channels where this demographic is most active.
+**Implication:** Every percentage point increase in subscription rate translates directly into disproportionate revenue growth. Subscription acquisition should be treated as a primary commercial objective, not a secondary loyalty perk.
 
 ---
 
-### Insight 3 — The 90% Complaint Decline Requires Careful Interpretation 🟠
+### 🔴 Insight 2 — Mid-Career Adults (36–45) Are the Highest-Spend Demographic
 
-> **Complaints fell from ~95,000 in 2021 to ~10,000 in 2025 — a 90%+ reduction in four years.**
+> **The 36–45 age cohort records the highest average purchase amount across all age groups — driven by higher disposable income and established brand engagement patterns.**
 
-This trend does not straightforwardly indicate a 90% reduction in fraud. It may reflect improved prevention, but could equally signal **underreporting fatigue**, reduced trust in reporting mechanisms, or a shift toward fraud vectors that are harder to detect and report.
+This cohort is also likely to overlap with the subscriber base and express shipping users — meaning they are not just high-spend, but high-loyalty.
 
-**Implication:** Before treating this as a success metric, reporting accessibility and completeness should be audited. Anonymous and streamlined reporting pathways may reveal a truer picture of current fraud prevalence.
-
----
-
-### Insight 4 — Women Bear a Disproportionate Share of Losses 🟠
-
-> **Female victims account for 60.03% of total financial losses despite representing roughly half the population.**
-
-This disparity likely reflects disproportionate targeting through romance fraud and social engineering — tactics that exploit trust relationships rather than technical vulnerabilities. This is a structural pattern, not a coincidence.
-
-**Implication:** Gender-responsive fraud prevention materials and campaigns are not optional — they are a necessary component of a complete national strategy.
+**Implication:** Premium product lines, early access offers, and exclusive membership benefits should be disproportionately directed at this demographic. Under-serving this cohort is a direct revenue risk.
 
 ---
 
-### Insight 5 — Multi-Vector Solicitation Demands Multi-Channel Prevention 🟡
+### 🟠 Insight 3 — Top 5 Products Drive Disproportionate Purchase Volume
 
-> **No single solicitation method exceeds 30% share. Fraud is distributed across internet, phone, email, social media, and emerging channels.**
+> **Blouse, Jewellery, Pants, Shirt, and Dress account for the largest share of total purchases — concentration that signals clear merchandising and inventory priorities.**
 
-The "Other" category (29.99%) — the largest single segment — likely captures newer vectors such as messaging apps, QR code phishing, and AI-assisted voice fraud that current taxonomies have not yet classified.
+High-volume products are not always high-margin products. But their prominence in the purchase mix makes them the most effective vehicles for promotional campaigns, cross-sell strategies, and seasonal positioning.
 
-**Implication:** Siloed prevention efforts targeting only one channel will not be sufficient. A coordinated, cross-channel prevention framework is required.
+**Implication:** These five items should anchor campaign creative, homepage placement, and inventory investment decisions. Their performance should be tracked as leading indicators of overall sales health.
+
+---
+
+### 🟠 Insight 4 — Express Shipping Users Are Premium Buyers
+
+> **Customers who select express and next-day shipping consistently record higher average purchase amounts — making shipping preference a reliable proxy for buyer value.**
+
+This is not purely a logistics preference. Choosing premium shipping reflects urgency, higher engagement, and a willingness to pay for convenience — all characteristics of high-lifetime-value customers.
+
+**Implication:** Express shipping customers should be targeted for loyalty programme enrolment and premium product recommendations. Shipping preference data should be integrated into customer segmentation models.
+
+---
+
+### 🟠 Insight 5 — Discount Policy Requires Strategic Rebalancing
+
+> **483 missing values in the `discount_applied` field indicate inconsistent discount tracking — and discount usage analysis suggests that discounts do not always correlate with the highest-value transactions.**
+
+Indiscriminate discounting can train customers to wait for promotions rather than purchasing at full price — eroding margins without building genuine loyalty.
+
+**Implication:** H&M should implement a structured discount eligibility framework — reserving discounts for frequency activation and subscriber acquisition rather than applying them broadly across the customer base.
+
+---
+
+### 🟡 Insight 6 — Regional Spend Variation Signals Untapped Geographic Growth
+
+> **Significant differences in average purchase amount and customer volume across locations suggest that lower-spend regions are underserved by current product and campaign strategies — not inherently lower-value.**
+
+**Implication:** Before writing off lower-spend regions as low-priority, H&M should test geo-targeted campaigns with region-specific product mixes and promotional incentives to determine whether spend gaps are demand-driven or supply-driven.
 
 ---
 
@@ -331,56 +260,76 @@ The "Other" category (29.99%) — the largest single segment — likely captures
 
 | Priority | Recommendation | Effort | Impact |
 |----------|---------------|--------|--------|
-| 🔴 P1 | Strengthen investment fraud enforcement | Medium | Very High |
-| 🔴 P2 | Launch age-targeted awareness campaigns (40–79) | Low | Very High |
-| 🟠 P3 | Audit and address complaint underreporting | Medium | High |
-| 🟠 P4 | Develop gender-responsive prevention programs | Low | High |
-| 🟡 P5 | Classify and monitor emerging solicitation vectors | Medium | Medium |
-| 🟡 P6 | Enhance Ontario & Quebec provincial coordination | Low | Medium |
+| 🔴 P1 | Accelerate subscriber acquisition with exclusive benefits | Low | Very High |
+| 🔴 P2 | Build loyalty programmes targeting the 36–45 demographic | Medium | Very High |
+| 🟠 P3 | Restructure discount policy — precision over volume | Medium | High |
+| 🟠 P4 | Position top 5 products as campaign anchors | Low | High |
+| 🟠 P5 | Target express shipping users for premium upsell | Low | High |
+| 🟡 P6 | Launch geo-targeted campaigns in lower-spend regions | Medium | Medium |
 
 ---
 
-### P1 — Strengthen Investment Fraud Enforcement 🔴
+### P1 — Accelerate Subscriber Acquisition 🔴
 
-**Target agencies:** OSC, AMF, BCSC, FINTRAC, RCMP Cybercrime Division
+**Target teams:** CRM, Marketing, Digital Product
 
-- Increase proactive monitoring of unregistered investment solicitations, particularly via social media and direct outreach targeting older Canadians
-- Fast-track cross-provincial intelligence sharing between securities regulators and law enforcement
-- Mandate registered investment platforms to display verified registration status prominently
-- Publish real-time fraud alert registries accessible to the public
+Subscribers consistently outperform non-subscribers on revenue contribution. Closing the gap between the two segments is the highest-return commercial action available.
 
----
-
-### P2 — Launch Age-Targeted Awareness Campaigns 🔴
-
-**Target agencies:** CAFC, CARP, Public Safety Canada
-
-- Design fraud awareness materials specifically for Canadians aged 40–79, distributed through community centres, financial institutions, and healthcare settings
-- Partner with CARP (Canadian Association of Retired Persons) to amplify reach within the highest-risk demographic
-- Align campaign timing with **Fraud Prevention Month (March)** and tax season — peak periods for investment and service fraud
-- Use plain-language, scenario-based content rather than technical messaging
+- Introduce a clearly communicated subscriber benefit stack: early access, free returns, exclusive pricing
+- Display subscription value proposition at all high-intent touchpoints — cart, checkout, post-purchase confirmation
+- A/B test subscription prompts at checkout against a control group to quantify conversion uplift
+- Set a quarterly subscriber growth KPI and tie it to marketing performance reporting
 
 ---
 
-### P3 — Audit Complaint Underreporting 🟠
+### P2 — Build Loyalty Programmes for the 36–45 Demographic 🔴
 
-**Target agencies:** CAFC, Statistics Canada, OPC
+**Target teams:** CRM, Product, Loyalty
 
-- Commission a study to distinguish genuine fraud reduction from reporting decline
-- Introduce anonymous reporting pathways to reduce stigma and barriers for victims
-- Integrate fraud reporting prompts into banking apps and digital platforms where fraud is most often first detected
-- Set national reporting rate benchmarks informed by international comparators (e.g., UK Action Fraud, US FTC)
+The 36–45 cohort spends the most per transaction and overlaps strongly with high-frequency and express-shipping profiles — making them the ideal loyalty investment target.
+
+- Design a tiered loyalty programme with tangible rewards at achievable thresholds (e.g., points per dollar, tier upgrades)
+- Partner with CARP-equivalent retail associations to reach professional-age demographics through trusted channels
+- Integrate loyalty status with the subscriber programme to create a unified high-value customer identity
+- Track cohort-level CLV (Customer Lifetime Value) as the primary success metric for this programme
 
 ---
 
-### P4 — Develop Gender-Responsive Prevention Programs 🟠
+### P3 — Restructure Discount Policy 🟠
 
-**Target agencies:** Status of Women Canada, CAFC, Provincial Consumer Protection Offices
+**Target teams:** Finance, Pricing, Marketing
 
-- Incorporate gender-sensitive messaging into all national fraud prevention campaigns
-- Address romance fraud and social engineering tactics specifically in materials targeting women
-- Partner with women's financial literacy organizations to build fraud resilience
-- Track and report gender-disaggregated fraud loss data annually as a standard metric
+Broad-based discounting trains customers to delay purchases and reduces per-transaction value. The data shows that discount application does not reliably drive the highest-value purchases.
+
+- Implement discount eligibility rules tied to frequency thresholds (e.g., discount unlocked after 3rd purchase in a season)
+- Reserve promotional codes for subscriber acquisition and lapsed-customer reactivation — not active buyers
+- Track discount redemption rates alongside margin impact to measure true promotional ROI
+- Analyse the top-performing promo code's mechanics and replicate its design in future campaigns
+
+---
+
+### P4 — Anchor Campaigns on Top 5 Products 🟠
+
+**Target teams:** Marketing, Merchandising, E-Commerce
+
+Blouse, Jewellery, Pants, Shirt, and Dress drive the highest purchase volumes. Their prominence makes them the most effective vehicles for seasonal campaigns and cross-sell strategies.
+
+- Feature these five products prominently in homepage banners, email campaigns, and social content
+- Use them as entry points for cross-category recommendations (e.g., "Pair with...")
+- Monitor stock levels for top-5 items closely — stockouts on high-volume products have an outsized revenue impact
+- Use seasonal and colour data from the dataset to align campaign creative with demonstrated purchase preferences
+
+---
+
+### P5 — Target Express Shipping Users for Premium Upsell 🟠
+
+**Target teams:** CRM, E-Commerce, Personalisation
+
+Express shipping preference is a reliable behavioural signal for high-intent, higher-spend customers.
+
+- Build a CRM segment for express shipping users and apply a premium upsell communication track
+- Offer express shipping as a default for subscribers to reinforce the subscription value proposition
+- Use shipping preference as a feature in product recommendation algorithms — high-intent buyers respond to premium and new-arrival positioning
 
 ---
 
@@ -388,36 +337,53 @@ The "Other" category (29.99%) — the largest single segment — likely captures
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║              PROJECTED PREVENTION IMPACT                         ║
+║               PROJECTED STRATEGIC IMPACT                         ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
-║  Investment fraud enforcement     -15–25% investment losses      ║
-║  Age-targeted awareness           -10–15% 40–79 victimization    ║
-║  Underreporting audit             +20–30% reporting completeness ║
-║  Gender-responsive campaigns      -8–12% female loss share gap   ║
+║  Subscriber growth (+10%)       Direct avg spend uplift          ║
+║  Loyalty programme (36–45)      Higher CLV per top cohort        ║
+║  Discount restructuring         Margin protection + frequency ↑  ║
+║  Top-5 product campaigns        Lower CAC, higher conversion     ║
+║  Express user upsell            Revenue per session increase     ║
 ║                                                                  ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  Combined potential: materially reduce Canada's ~$637M           ║
-║  annual fraud loss WITHOUT increasing enforcement budgets        ║
+║  Combined: Measurable revenue growth without new customer        ║
+║  acquisition — driven entirely by existing base optimisation     ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
+
+### Proposed Implementation Timeline
+
+| Timeframe | Action |
+|-----------|--------|
+| 0–30 Days | Launch subscription acquisition A/B test at checkout |
+| 30–60 Days | Deploy top-5 product campaign across digital and email channels |
+| 60–90 Days | Implement restructured discount eligibility framework |
+| 90–180 Days | Launch 36–45 loyalty programme with tiered rewards |
+| 180+ Days | Evaluate CLV movement across subscriber and loyalty cohorts |
 
 ---
 
 ## 8. Dashboard
 
-An interactive **Power BI dashboard** was built to enable stakeholder exploration and self-serve analysis across all key fraud dimensions.
+An interactive **Power BI dashboard** was built to enable stakeholder exploration and self-serve analysis across all key customer behaviour dimensions.
 
-**Dashboard Features:**
-- Loss severity visualization by fraud category (bar chart)
-- Victim age distribution across the full demographic spectrum (area chart)
-- Year-over-year complaint trend analysis 2021–2025 (line chart)
-- Province-level complaint volume with geographic ranking (horizontal bar)
-- Solicitation method frequency breakdown (donut chart)
-- Gender-based financial loss distribution (pie chart)
-- KPI summary cards — total victims, total dollar loss, average Canadian loss
+### Dashboard Features
 
-🔗 **[View Interactive Power BI Dashboard](#)**
+| Visual | Metric Displayed |
+|--------|----------------|
+| KPI Cards | Total customers, total transactions, average purchase amount |
+| Revenue by Gender Bar Chart | Total revenue split — Male vs. Female |
+| Subscriber vs. Non-Subscriber | Revenue and average spend comparison |
+| Top 5 Products Chart | Purchase volume ranking by item |
+| Age Group Spend Chart | Average purchase amount per age cohort |
+| Location Revenue Map | Average spend and customer volume by region |
+| Shipping Type Analysis | Average purchase amount by shipping method |
+| Purchase Frequency Chart | Frequency vs. average spend correlation |
+| Review Rating Distribution | Product satisfaction across categories |
+| Promo Code Performance | Revenue generated per promo code |
+
+![Dashboard Screenshot](Dashboard Screenshot.png)
 
 ---
 
@@ -427,13 +393,14 @@ An interactive **Power BI dashboard** was built to enable stakeholder exploratio
 
 | Limitation | Potential Impact | Mitigation Applied |
 |------------|-----------------|-------------------|
-| Self-reported complaints only | True fraud prevalence likely much higher | Underreporting acknowledged throughout |
-| No per-incident LTV data | Revenue impact estimates are approximated | Population-level averages used for projections |
-| Gender binary classification | Non-binary victims may be undercounted | Reflects source data structure; noted as limitation |
-| 5-year analysis window | Long-term cyclical patterns may not be captured | Recommend extending to rolling 10-year analysis |
-| "Other" solicitation category | Emerging vectors are underclassified | Flagged as research priority in recommendations |
-| Provincial data only | Municipal-level patterns not visible | City-level analysis recommended for Ontario and Quebec |
-| Impact estimates are directional | Not guaranteed outcomes | Based on comparable national fraud prevention studies |
+| 483 missing values in `discount_applied` | Discount analysis may not reflect true promotional behaviour | Median imputation per product category applied; flagged throughout |
+| 1,000 customer sample | Findings are directional — not statistically representative of all H&M customers | Results treated as indicative; full dataset recommended for production decisions |
+| No revenue/margin data | Purchase amount used as revenue proxy; actual margin unknown | Recommendations framed around spend behaviour, not profitability |
+| Binary gender field only | Non-binary customers not captured in source data | Reflects source data structure; noted as limitation |
+| No timestamp granularity | Purchase timing within year not available | Seasonal analysis limited to season label field |
+| Dropped `promo_code_used` column | Promotional analysis relies solely on `discount_applied` | Redundancy verified before removal; discount field retained |
+| No customer acquisition source | Cannot determine which channel acquired each customer | Campaign attribution analysis not possible with current dataset |
+| Impact estimates are directional | Not guaranteed outcomes | Based on comparable retail behaviour benchmarks |
 
 ---
 
@@ -441,50 +408,22 @@ An interactive **Power BI dashboard** was built to enable stakeholder exploratio
 
 | Tool | Purpose |
 |------|---------|
-| **Python (Pandas, NumPy, Matplotlib, Seaborn)** | Data cleaning, EDA, feature engineering, visualization |
-| **SQL** | Structured storage, SQL analysis, aggregations |
-| **Power BI** | Interactive dashboard, stakeholder reporting |
-| **Git & GitHub** | Version control and portfolio publishing |
+| **Python (Pandas, NumPy)** | Data ingestion, cleaning, feature engineering, EDA |
+| **SQL** | Structured storage, revenue queries, segmentation, ranking aggregations |
+| **Power BI** | Interactive dashboard, KPI visualisation, stakeholder reporting |
+| **Git & GitHub** | Version control and professional portfolio publishing |
 
 ---
 
-## Project Structure
-
-```
-cybercrime-fraud-canada-2021-2025/
-│
-├── data/
-│   ├── raw_data.csv                  # Original fraud report data
-│   └── cleaned_data.csv              # Processed, analysis-ready dataset
-│
-├── notebooks/
-│   └── data_cleaning_eda.ipynb       # Python cleaning and EDA workflow
-│
-├── sql/
-│   └── analysis_queries.sql          # Segmentation, aggregations, trend queries
-│
-├── dashboard/
-│   └── cybercrime_dashboard.pbix     # Power BI workbook
-│
-├── assets/
-│   └── dashboard.png                 # Dashboard preview image
-│
-└── README.md                         # Project report (this file)
-```
-
----
-
-## Author
+## 👤 Author
 
 **Dipanshi Dhiman**
 Data Analyst | Toronto, Ontario, Canada
 
-Focused on public sector analytics, fraud intelligence, and translating complex datasets into actionable strategies that drive measurable outcomes.
+Focused on retail analytics, customer behaviour intelligence, and translating transactional data into commercial strategies that deliver measurable revenue growth.
 
 📧 dhimandipanshi713@gmail.com
 💼 [LinkedIn](https://www.linkedin.com/in/dipanshidhiman)
 🐙 [GitHub](https://github.com/dhimandipanshi)
 
 ---
-
-*Portfolio Project — Canadian Cybercrime & Fraud Intelligence Analysis | 2025*
