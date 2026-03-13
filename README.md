@@ -366,7 +366,7 @@ Express shipping preference is a reliable behavioural signal for high-intent, hi
 
 ## 8. Dashboard
 
-![Dashboard Screenshot](Dashboard Screenshot.png)
+![Dashboard Screenshot](Screenshot.png)
 
 ### Dashboard Features
 
