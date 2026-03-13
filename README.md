@@ -366,7 +366,7 @@ Express shipping preference is a reliable behavioural signal for high-intent, hi
 
 ## 8. Dashboard
 
-An interactive **Power BI dashboard** was built to enable stakeholder exploration and self-serve analysis across all key customer behaviour dimensions.
+![Dashboard Screenshot](Dashboard Screenshot.png)
 
 ### Dashboard Features
 
@@ -382,8 +382,6 @@ An interactive **Power BI dashboard** was built to enable stakeholder exploratio
 | Purchase Frequency Chart | Frequency vs. average spend correlation |
 | Review Rating Distribution | Product satisfaction across categories |
 | Promo Code Performance | Revenue generated per promo code |
-
-![Dashboard Screenshot](Dashboard Screenshot.png)
 
 ---
 
