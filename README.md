@@ -1,4 +1,4 @@
-# H&M Customer Behaviour Analysis — Retail Strategy Summary
+# H&M Customer Behaviour Analysis
 
 ---
 
