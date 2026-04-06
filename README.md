@@ -88,4 +88,6 @@ Which customer segments and behaviours should H&M prioritize to increase revenue
 - Increased revenue through **existing customer optimization**  
 - Improved customer retention and loyalty  
 - Better ROI on promotions and marketing spend  
-- Data-driven decision-making across retail strategy  
+- Data-driven decision-making across retail strategy
+
+![Screeshot](Screenshot.png)
