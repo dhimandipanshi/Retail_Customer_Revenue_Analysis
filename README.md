@@ -81,13 +81,4 @@ Which customer segments and behaviours should H&M prioritize to increase revenue
 - Expand dataset for broader customer coverage  
 - Develop predictive models for customer lifetime value (CLV)  
 
----
-
-## Impact Summary
-
-- Increased revenue through **existing customer optimization**  
-- Improved customer retention and loyalty  
-- Better ROI on promotions and marketing spend  
-- Data-driven decision-making across retail strategy
-
 ![Screeshot](Screenshot.png)
