@@ -1,4 +1,4 @@
-# H&M Customer Behaviour Analysis
+# Customer Insights & Revenue Optimization
 
 ---
 
